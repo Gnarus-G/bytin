@@ -51,14 +51,10 @@ export default function Navbar({ appName: title, isAuthenticated, children, onMe
                         ))}
                     </Box>
                     {!isAuthenticated &&
-                        <>
                             <Link href={Route.LOGIN.path}>
                                 <Button color="inherit">Login</Button>
                             </Link>
-                            <Link href={Route.REGISTER.path}>
-                                <Button color="inherit">Register</Button>
-                            </Link>
-                        </>}
+                        }
                     {isAuthenticated && <Tooltip title="Logout" aria-label="log out of the app">
                         <Link href={Route.LOGOUT.path}>
                             <IconButton color="inherit">

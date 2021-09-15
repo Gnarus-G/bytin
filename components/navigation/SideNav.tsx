@@ -4,7 +4,6 @@ import PostAddIcon from '@material-ui/icons/PostAdd';;
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 import { Route } from '../../constants';
@@ -22,7 +21,7 @@ export default function SideNav({ appName, isOpen, onClose, loggedIn }: SideNavP
     const classes = useStyles();
 
     const routeGroup: RouteAndIcon[] = [[Route.PUBLIC_SNIPPETS, ListIcon], [Route.PRIVATE_SNIPPETS, AssignmentIcon], [Route.ADD_SNIPPETS, PostAddIcon]];
-    const protectedRouteGroup: RouteAndIcon[] = [[Route.LOGIN, LockOpenIcon], [Route.REGISTER, PersonAddIcon]];
+    const protectedRouteGroup: RouteAndIcon[] = [[Route.LOGIN, LockOpenIcon]];
     return (
         <>
             <Drawer anchor="left" open={isOpen} onClose={onClose}>
