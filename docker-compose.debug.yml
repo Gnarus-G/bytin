@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+    db:
+        image: postgres:latest
+        restart: always
+        ports:
+            - '5432:5432'
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: postgres
+        volumes:
+            - pgtestdata:/var/lib/postgresql/data
+
+volumes:
+    pgtestdata:
