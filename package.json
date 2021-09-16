@@ -2,9 +2,6 @@
     "name": "bytin",
     "version": "0.1.0",
     "private": true,
-    "prisma": {
-        "schema": "prisma/schema.prisma"
-    },
     "dependencies": {
         "@material-ui/core": "latest",
         "@material-ui/icons": "^4.11.2",
