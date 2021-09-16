@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, RenderResult } from "@testing-library/react"
 import { mocked } from "ts-jest/utils"
-import Navbar from "../../components/navigation/component/Navbar"
 import { Route } from '../../constants';
 import { useRouter } from 'next/router';
+import Navbar from 'components/navigation/Navbar';
 
 jest.mock("next/router")
 
