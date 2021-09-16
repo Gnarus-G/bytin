@@ -10,7 +10,7 @@ const schema = buildSchemaSync({ resolvers })
 const cors = microCors();
 
 module.exports = cors((req, res) => req.method === 'OPTIONS' ?
-    res.send("ok"):
+    res.send("ok") :
     graphqlHTTP({ schema, context: { prisma }, graphiql: true })(req, res));
 
 export const config = { api: { bodyParser: false } };
