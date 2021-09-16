@@ -2,16 +2,23 @@
     "name": "bytin",
     "version": "0.1.0",
     "private": true,
+    "prisma": {
+        "schema": "prisma/schema.prisma"
+    },
     "dependencies": {
         "@material-ui/core": "latest",
         "@material-ui/icons": "^4.11.2",
         "@material-ui/lab": "^4.0.0-alpha.57",
-        "@prisma/client": "^2.30.3",
+        "@prisma/client": "^3.0.1",
+        "apollo-server-micro": "^3.3.0",
         "clsx": "latest",
         "next": "latest",
         "next-auth": "^3.29.0",
         "react": "latest",
-        "react-dom": "latest"
+        "react-dom": "latest",
+        "reflect-metadata": "^0.1.13",
+        "type-graphql": "^1.1.1",
+        "typegraphql-prisma": "^0.16.0"
     },
     "scripts": {
         "dev": "next",
