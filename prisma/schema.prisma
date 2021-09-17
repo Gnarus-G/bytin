@@ -48,6 +48,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime? @map(name: "email_verified")
   image         String?
+  snippets      Snippet[]
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
 
@@ -65,3 +66,17 @@ model VerificationRequest {
   @@map(name: "verification_requests")
 }
 
+model Snippet {
+  id          Int      @id @default(autoincrement())
+  title       String
+  language    String
+  code        String
+  description String
+  framework   String?
+  resource    String?
+  private     Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map(name: "created_at")
+  updatedAt   DateTime @default(now()) @map(name: "updated_at")
+  User        User?    @relation(fields: [userId], references: [id])
+  userId      Int?
+}
