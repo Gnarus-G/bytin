@@ -1,0 +1,5 @@
+mutation CreateSnippet($data: SnippetCreateInput!) {
+  createSnippet(data: $data){
+      id
+  }
+}
