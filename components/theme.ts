@@ -1,14 +1,14 @@
-import { createTheme } from '@material-ui/core/styles';
-import { cyan, red} from '@material-ui/core/colors';
+import { createTheme } from "@mui/material/styles";
+import { cyan, red } from "@mui/material/colors";
 
-const theme: import('@material-ui/core').Theme = createTheme({
+const theme: import("@mui/material").Theme = createTheme({
   palette: {
-    type: "dark",
+    mode: "dark",
     primary: {
-      main: "#90caf9"
+      main: "#90caf9",
     },
     secondary: {
-      main: cyan[100]
+      main: cyan[100],
     },
     error: {
       main: red[300],
@@ -16,4 +16,4 @@ const theme: import('@material-ui/core').Theme = createTheme({
   },
 });
 
-export default theme
+export default theme;

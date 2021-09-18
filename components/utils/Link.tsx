@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
+import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import clsx from 'clsx';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import { useRouter } from 'next/router';
@@ -35,7 +35,7 @@ function Link(props: OurLinkProps) {
         href,
         activeClassName = 'active',
         className: classNameProps,
-        innerRef,
+        ref,
         naked,
         ...other
     } = props;
@@ -49,7 +49,7 @@ function Link(props: OurLinkProps) {
         [activeClassName]: isCurrentPath && activeClassName,
     });
 
-    if (naked) return <NextComposed className={className} ref={innerRef} href={href} {...other} />;
+    if (naked) return <NextComposed className={className} ref={ref} href={href} {...other} />;
 
     const color = isCurrentPath ? 'primary' : 'inherit';
     return (
@@ -57,7 +57,7 @@ function Link(props: OurLinkProps) {
             component={NextComposed}
             color={color}
             className={className}
-            ref={innerRef}
+            ref={ref}
             href={href}
             {...other}
         />
@@ -65,7 +65,7 @@ function Link(props: OurLinkProps) {
 }
 
 export default React.forwardRef<HTMLAnchorElement, OurLinkProps>((props, ref) => (
-    <Link {...props} innerRef={ref} />
+    <Link {...props}  ref={ref} />
 ));
 
 function getPathnameIn(href: NextLinkProps['href']) {

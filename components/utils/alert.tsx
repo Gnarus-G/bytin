@@ -1,8 +1,8 @@
 import React, { useState } from "react"
-import MuiAlert, { Color, AlertProps } from "@material-ui/lab/Alert";
+import MuiAlert, { AlertColor, AlertProps } from '@mui/material/Alert';
 
 export type AlertMessage = {
-    type: Extract<Color, "success" | "error">
+    type: Extract<AlertColor, "success" | "error">
     text: string
 }
 

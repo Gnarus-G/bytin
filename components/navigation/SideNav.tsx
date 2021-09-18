@@ -1,11 +1,12 @@
 import React from 'react'
-import { Drawer, List, Divider, ListItem, ListItemText, makeStyles, Typography, ListItemIcon } from "@material-ui/core";
-import PostAddIcon from '@material-ui/icons/PostAdd';;
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeIcon from '@material-ui/icons/Home';
-import ListIcon from '@material-ui/icons/List';
+import { Drawer, List, Divider, ListItem, ListItemText, Typography, ListItemIcon } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import LockOpenIcon from '@mui/icons-material/LockOpen';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import HomeIcon from '@mui/icons-material/Home';
+import ListIcon from '@mui/icons-material/List';
 import { Route } from '../../constants';
 import Link from 'components/utils/Link';
 import { RouteAndIcon } from '.';
