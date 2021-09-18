@@ -1,11 +1,12 @@
 import {
+  Check,
   Code,
   Description,
   Link as LinkIcon,
   Save,
   Storage as StorageIcon,
   Title,
-  Translate
+  Translate,
 } from "@mui/icons-material";
 import {
   Button,
@@ -14,13 +15,13 @@ import {
   FormControlLabel,
   Grid,
   TextField,
-  Typography
+  Typography,
 } from "@mui/material";
 import { IsNotEmpty } from "class-validator";
 import { FormInputChangeFn, onChange } from "components/utils/forms/onChange";
 import {
   SnippetCreateInput,
-  useCreateSnippetMutation
+  useCreateSnippetMutation,
 } from "generated/graphql";
 import { useSession } from "next-auth/client";
 import React, { FormEvent, useRef } from "react";
@@ -44,7 +45,11 @@ export default function AddSnippet() {
   const { current: input } = useRef(new SnippetInput());
   const [validate, errors] = useValidation(SnippetInput);
   const [session] = useSession();
-  const [, createSnippet] = useCreateSnippetMutation();
+  const [{ data }, createSnippet] = useCreateSnippetMutation();
+
+  const success = !!data?.createSnippet?.id;
+
+  console.log(`success`, success);
 
   return (
     <Container maxWidth="sm">
@@ -72,11 +77,12 @@ export default function AddSnippet() {
       <Button
         style={{ float: "right" }}
         variant="contained"
+        color={success ? "success" : "primary"}
         type="submit"
         form={SnippetForm.name}
-        startIcon={<Save />}
+        startIcon={success ? <Check /> : <Save />}
       >
-        Save
+        {success ? "Saved" : "Save"}
       </Button>
     </Container>
   );
