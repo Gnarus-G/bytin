@@ -2357,7 +2357,27 @@ export type CreateSnippetMutationVariables = Exact<{
 
 export type CreateSnippetMutation = { __typename?: 'Mutation', createSnippet: { __typename?: 'Snippet', id: number } };
 
+export type PublicSnippetsQueryVariables = Exact<{ [key: string]: never; }>;
 
+
+export type PublicSnippetsQuery = { __typename?: 'Query', snippets: Array<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
+
+export type SnippetFragment = { __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> };
+
+export const SnippetFragmentDoc = gql`
+    fragment Snippet on Snippet {
+  id
+  title
+  description
+  code
+  language
+  framework
+  resource
+  owner {
+    name
+  }
+}
+    `;
 export const CreateSnippetDocument = gql`
     mutation CreateSnippet($data: SnippetCreateInput!) {
   createSnippet(data: $data) {
@@ -2368,4 +2388,15 @@ export const CreateSnippetDocument = gql`
 
 export function useCreateSnippetMutation() {
   return Urql.useMutation<CreateSnippetMutation, CreateSnippetMutationVariables>(CreateSnippetDocument);
+};
+export const PublicSnippetsDocument = gql`
+    query PublicSnippets {
+  snippets(where: {private: {not: {equals: true}}}) {
+    ...Snippet
+  }
+}
+    ${SnippetFragmentDoc}`;
+
+export function usePublicSnippetsQuery(options: Omit<Urql.UseQueryArgs<PublicSnippetsQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<PublicSnippetsQuery>({ query: PublicSnippetsDocument, ...options });
 };

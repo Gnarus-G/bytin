@@ -8,17 +8,12 @@ import {
 } from "@mui/icons-material";
 import { Checkbox, FormControlLabel, Grid, TextField } from "@mui/material";
 import { FormInputChangeFn } from "components/utils/forms/onChange";
-import { SnippetCreateInput } from "generated/graphql";
+import { Snippet } from "generated/graphql";
 import React, { FormEvent } from "react";
-
-type SnippetInput = Omit<
-  SnippetCreateInput,
-  "owner" | "createdAt" | "updatedAt"
->;
 
 interface SnippetFormProps {
   id?: string;
-  errors: ValidationErrorMap<SnippetInput, keyof SnippetInput>;
+  errors: ValidationErrorMap<Snippet, keyof Snippet>;
   onChange: FormInputChangeFn;
   onSubmit: () => void;
 }

@@ -1,0 +1,18 @@
+query PublicSnippets {
+  snippets(where: { private: { not: { equals: true } } }) {
+    ...Snippet
+  }
+}
+
+fragment Snippet on Snippet {
+  id
+  title
+  description
+  code
+  language
+  framework
+  resource
+  owner {
+    name
+  }
+}
