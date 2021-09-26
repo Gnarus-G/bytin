@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import SnippetCard from "components/snippet/card";
-import { Snippet, usePublicSnippetsQuery } from "generated/graphql";
+import { usePublicSnippetsQuery } from "generated/graphql";
 import React from "react";
 
 export default function PublicSnippets() {

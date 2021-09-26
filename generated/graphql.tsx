@@ -2362,6 +2362,13 @@ export type PublicSnippetsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type PublicSnippetsQuery = { __typename?: 'Query', snippets: Array<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
 
+export type OwnSnippetsQueryVariables = Exact<{
+  where: SnippetWhereInput;
+}>;
+
+
+export type OwnSnippetsQuery = { __typename?: 'Query', snippets: Array<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
+
 export type SnippetFragment = { __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> };
 
 export const SnippetFragmentDoc = gql`
@@ -2399,4 +2406,15 @@ export const PublicSnippetsDocument = gql`
 
 export function usePublicSnippetsQuery(options: Omit<Urql.UseQueryArgs<PublicSnippetsQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<PublicSnippetsQuery>({ query: PublicSnippetsDocument, ...options });
+};
+export const OwnSnippetsDocument = gql`
+    query OwnSnippets($where: SnippetWhereInput!) {
+  snippets(where: $where) {
+    ...Snippet
+  }
+}
+    ${SnippetFragmentDoc}`;
+
+export function useOwnSnippetsQuery(options: Omit<Urql.UseQueryArgs<OwnSnippetsQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<OwnSnippetsQuery>({ query: OwnSnippetsDocument, ...options });
 };
