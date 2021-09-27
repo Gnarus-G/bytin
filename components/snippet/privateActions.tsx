@@ -5,7 +5,6 @@ import { SnippetFragment, useDeleteSnippetMutation } from "generated/graphql";
 import useDialog from "lib/hooks/useDialog";
 import React from "react";
 import EditSnippet from "./editSnippet";
-import SnippetForm from "./form";
 
 export default function PrivateActions({
   snippet,

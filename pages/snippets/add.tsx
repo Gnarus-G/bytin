@@ -3,32 +3,17 @@ import { Button, Container, Typography } from "@mui/material";
 import { IsNotEmpty } from "class-validator";
 import { AuthGuard } from "components/auth-guard";
 import SnippetForm from "components/snippet/form";
+import useSnippetInput from "components/snippet/useSnippetInput";
 import { onChange } from "components/utils/forms/onChange";
 import {
   SnippetCreateInput,
   useCreateSnippetMutation,
 } from "generated/graphql";
 import { useSession } from "next-auth/client";
-import React, { useRef } from "react";
-import { useValidation } from "react-class-validator";
-
-class SnippetInput implements SnippetCreateInput {
-  @IsNotEmpty()
-  title: string;
-  @IsNotEmpty()
-  language: string;
-  @IsNotEmpty()
-  code: string;
-  @IsNotEmpty()
-  description: string;
-  framework?: string;
-  resource?: string;
-  private?: boolean;
-}
+import React from "react";
 
 export default function AddSnippet() {
-  const { current: input } = useRef(new SnippetInput());
-  const [validate, errors] = useValidation(SnippetInput);
+  const { snippet, validate, errors } = useSnippetInput();
   const [session] = useSession();
   const [{ data }, createSnippet] = useCreateSnippetMutation();
 
@@ -43,12 +28,12 @@ export default function AddSnippet() {
         <SnippetForm
           id={SnippetForm.name}
           errors={errors}
-          onChange={onChange(input)}
+          onChange={onChange(snippet)}
           onSubmit={async () => {
-            if (await validate(input))
+            if (await validate(snippet))
               await createSnippet({
                 data: {
-                  ...input,
+                  ...snippet,
                   owner: {
                     connect: {
                       email: session?.user?.email,
