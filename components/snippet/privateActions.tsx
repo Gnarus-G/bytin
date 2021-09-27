@@ -1,5 +1,15 @@
 import { Delete, Edit, Save } from "@mui/icons-material";
-import { Button, Dialog, DialogContent, Grid, IconButton } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Grid,
+  IconButton,
+  Theme,
+  useMediaQuery,
+} from "@mui/material";
 import ConfirmDialog from "components/utils/ConfirmDialog";
 import { SnippetFragment, useDeleteSnippetMutation } from "generated/graphql";
 import useDialog from "lib/hooks/useDialog";
@@ -31,23 +41,35 @@ export default function PrivateActions({
         open={editFormDialogState.isOpen}
         onClose={editFormDialogState.close}
         fullWidth
+        fullScreen={useMediaQuery((theme: Theme) =>
+          theme.breakpoints.down("sm")
+        )}
       >
         <DialogContent>
+          <DialogTitle sx={{ px: 0 }}>Edit snippet #{snippet.id}</DialogTitle>
           <EditSnippet
             formId={EditSnippet.name}
             snippet={snippet}
             onSuccess={editFormDialogState.close}
           />
+        </DialogContent>
+        <DialogActions sx={{ justifyContent: "space-between" }}>
+          <Button
+            variant="text"
+            color="inherit"
+            onClick={editFormDialogState.close}
+          >
+            Cancel
+          </Button>
           <Button
             form={EditSnippet.name}
-            style={{ float: "right" }}
-            variant="contained"
+            variant="text"
             startIcon={<Save />}
             type="submit"
           >
             Save
           </Button>
-        </DialogContent>
+        </DialogActions>
       </Dialog>
       <ConfirmDialog
         open={deleteDialogState.isOpen}
