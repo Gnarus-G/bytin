@@ -18,6 +18,7 @@ fragment Snippet on Snippet {
   language
   framework
   resource
+  private
   owner {
     name
   }

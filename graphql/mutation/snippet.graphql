@@ -1,0 +1,19 @@
+mutation CreateSnippet($data: SnippetCreateInput!) {
+  createSnippet(data: $data) {
+    id
+  }
+}
+mutation DeleteSnippet($where: SnippetWhereUniqueInput!) {
+  deleteSnippet(where: $where) {
+    id
+  }
+}
+
+mutation UpdateSnippet(
+  $data: SnippetUpdateInput!
+  $where: SnippetWhereUniqueInput!
+) {
+  updateSnippet(where: $where, data: $data) {
+    id
+  }
+}

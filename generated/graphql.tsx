@@ -2357,19 +2357,34 @@ export type CreateSnippetMutationVariables = Exact<{
 
 export type CreateSnippetMutation = { __typename?: 'Mutation', createSnippet: { __typename?: 'Snippet', id: number } };
 
+export type DeleteSnippetMutationVariables = Exact<{
+  where: SnippetWhereUniqueInput;
+}>;
+
+
+export type DeleteSnippetMutation = { __typename?: 'Mutation', deleteSnippet?: Maybe<{ __typename?: 'Snippet', id: number }> };
+
+export type UpdateSnippetMutationVariables = Exact<{
+  data: SnippetUpdateInput;
+  where: SnippetWhereUniqueInput;
+}>;
+
+
+export type UpdateSnippetMutation = { __typename?: 'Mutation', updateSnippet?: Maybe<{ __typename?: 'Snippet', id: number }> };
+
 export type PublicSnippetsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PublicSnippetsQuery = { __typename?: 'Query', snippets: Array<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
+export type PublicSnippetsQuery = { __typename?: 'Query', snippets: Array<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, private: boolean, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
 
 export type OwnSnippetsQueryVariables = Exact<{
   where: SnippetWhereInput;
 }>;
 
 
-export type OwnSnippetsQuery = { __typename?: 'Query', snippets: Array<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
+export type OwnSnippetsQuery = { __typename?: 'Query', snippets: Array<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, private: boolean, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
 
-export type SnippetFragment = { __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> };
+export type SnippetFragment = { __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, private: boolean, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> };
 
 export const SnippetFragmentDoc = gql`
     fragment Snippet on Snippet {
@@ -2380,6 +2395,7 @@ export const SnippetFragmentDoc = gql`
   language
   framework
   resource
+  private
   owner {
     name
   }
@@ -2395,6 +2411,28 @@ export const CreateSnippetDocument = gql`
 
 export function useCreateSnippetMutation() {
   return Urql.useMutation<CreateSnippetMutation, CreateSnippetMutationVariables>(CreateSnippetDocument);
+};
+export const DeleteSnippetDocument = gql`
+    mutation DeleteSnippet($where: SnippetWhereUniqueInput!) {
+  deleteSnippet(where: $where) {
+    id
+  }
+}
+    `;
+
+export function useDeleteSnippetMutation() {
+  return Urql.useMutation<DeleteSnippetMutation, DeleteSnippetMutationVariables>(DeleteSnippetDocument);
+};
+export const UpdateSnippetDocument = gql`
+    mutation UpdateSnippet($data: SnippetUpdateInput!, $where: SnippetWhereUniqueInput!) {
+  updateSnippet(where: $where, data: $data) {
+    id
+  }
+}
+    `;
+
+export function useUpdateSnippetMutation() {
+  return Urql.useMutation<UpdateSnippetMutation, UpdateSnippetMutationVariables>(UpdateSnippetDocument);
 };
 export const PublicSnippetsDocument = gql`
     query PublicSnippets {
