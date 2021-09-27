@@ -22,7 +22,7 @@ export default function AddSnippet() {
   return (
     <Container maxWidth="sm">
       <AuthGuard>
-        <Typography variant="h4" align="center" paragraph>
+        <Typography variant="h4" py={2} align="center" paragraph>
           Add a Snippet
         </Typography>
         <SnippetForm
