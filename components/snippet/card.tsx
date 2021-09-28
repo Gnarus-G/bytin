@@ -55,7 +55,7 @@ export default function SnippetCard({
         <IconButton
           aria-label="share the snippet"
           onClick={() => {
-            navigator.clipboard.writeText("https://bytin.tech/snippet/" + id);
+            navigator.clipboard.writeText("https://bytin.tech/snippets/" + id);
             setShareSnackDisplay(true);
           }}
         >

@@ -21,7 +21,6 @@
         "react-dom": "latest",
         "react-syntax-highlighter": "^15.4.4",
         "reflect-metadata": "^0.1.13",
-        "rm": "^0.1.8",
         "type-graphql": "^1.1.1",
         "typegraphql-prisma": "^0.16.0",
         "urql": "^2.0.4"

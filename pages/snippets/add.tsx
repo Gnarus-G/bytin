@@ -5,10 +5,7 @@ import { AuthGuard } from "components/auth-guard";
 import SnippetForm from "components/snippet/form";
 import useSnippetInput from "components/snippet/useSnippetInput";
 import { onChange } from "components/utils/forms/onChange";
-import {
-  SnippetCreateInput,
-  useCreateSnippetMutation,
-} from "generated/graphql";
+import { useCreateSnippetMutation } from "generated/graphql";
 import { useSession } from "next-auth/client";
 import React from "react";
 

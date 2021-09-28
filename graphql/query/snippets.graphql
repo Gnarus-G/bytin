@@ -1,3 +1,9 @@
+query OneSnippet($id: Int!) {
+  snippet(where: { id: $id }) {
+    ...Snippet
+  }
+}
+
 query PublicSnippets {
   snippets(where: { private: { not: { equals: true } } }) {
     ...Snippet

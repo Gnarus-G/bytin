@@ -2372,6 +2372,13 @@ export type UpdateSnippetMutationVariables = Exact<{
 
 export type UpdateSnippetMutation = { __typename?: 'Mutation', updateSnippet?: Maybe<{ __typename?: 'Snippet', id: number }> };
 
+export type OneSnippetQueryVariables = Exact<{
+  id: Scalars['Int'];
+}>;
+
+
+export type OneSnippetQuery = { __typename?: 'Query', snippet?: Maybe<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, private: boolean, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
+
 export type PublicSnippetsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -2440,6 +2447,17 @@ export const UpdateSnippetDocument = gql`
 
 export function useUpdateSnippetMutation() {
   return Urql.useMutation<UpdateSnippetMutation, UpdateSnippetMutationVariables>(UpdateSnippetDocument);
+};
+export const OneSnippetDocument = gql`
+    query OneSnippet($id: Int!) {
+  snippet(where: {id: $id}) {
+    ...Snippet
+  }
+}
+    ${SnippetFragmentDoc}`;
+
+export function useOneSnippetQuery(options: Omit<Urql.UseQueryArgs<OneSnippetQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<OneSnippetQuery>({ query: OneSnippetDocument, ...options });
 };
 export const PublicSnippetsDocument = gql`
     query PublicSnippets {

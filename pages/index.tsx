@@ -6,9 +6,9 @@ import {
   useRecentSnippetsQuery,
 } from "generated/graphql";
 import useBreakpoints from "lib/hooks/useBreakpoints";
+import { getUrqlClientAndCache } from "lib/utils/getUrqlClientAndCache";
 import { GetStaticProps } from "next";
 import { withUrqlClient } from "next-urql";
-import { createUrqlClientAndCache } from "lib/utils/createUrqlClientAndCache";
 
 const maxAmountOfFeaturedSnippets = 8;
 
@@ -70,7 +70,7 @@ const Jumbotron = styled("header")({
 });
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { client, ssrCache } = createUrqlClientAndCache();
+  const { client, ssrCache } = getUrqlClientAndCache();
   await client.query(RecentSnippetsDocument, { amount: 6 }).toPromise();
 
   return {

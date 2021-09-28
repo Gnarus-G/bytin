@@ -6,7 +6,7 @@ import {
 } from "@urql/core";
 import { initUrqlClient } from "next-urql";
 
-export function createUrqlClientAndCache() {
+export function getUrqlClientAndCache() {
   const ssrCache = ssrExchange({ isClient: false });
   const client = initUrqlClient(
     {
