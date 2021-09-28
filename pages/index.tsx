@@ -1,26 +1,26 @@
 import styled from "@emotion/styled";
-import {
-  Box,
-  Container,
-  Divider, Typography
-} from "@mui/material";
+import { Box, Container, Divider, Typography } from "@mui/material";
 import SnippetGrid from "components/snippet/grid";
 import {
-  useRecentSnippetsQuery
+  RecentSnippetsDocument,
+  useRecentSnippetsQuery,
 } from "generated/graphql";
 import useBreakpoints from "lib/hooks/useBreakpoints";
+import { GetStaticProps } from "next";
+import { withUrqlClient } from "next-urql";
+import { createUrqlClientAndCache } from "lib/utils/createUrqlClientAndCache";
 
-export default function Home() {
-  const maxAmount = 8;
+const maxAmountOfFeaturedSnippets = 8;
+
+function Home() {
   const [{ data }] = useRecentSnippetsQuery({
-    variables: { amount: maxAmount },
+    variables: { amount: maxAmountOfFeaturedSnippets },
   });
-  const sizeToShow = useBreakpoints({ xs: 4, md: 4, lg: 6, xl: maxAmount }, 6);
-  console.log(`sizeToShow`, sizeToShow);
-
+  const sizeToShow = useBreakpoints(
+    { xs: 4, md: 4, lg: 6, xl: maxAmountOfFeaturedSnippets },
+    6
+  );
   const snippets = data?.snippets?.slice(0, sizeToShow);
-
-  console.log(`snippets.length`, snippets?.length);
 
   return (
     <>
@@ -68,3 +68,20 @@ const Jumbotron = styled("header")({
   background: `linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3) ), url("/img/landing-img.jpg") no-repeat center center fixed`,
   backgroundSize: "cover",
 });
+
+export const getStaticProps: GetStaticProps = async () => {
+  const { client, ssrCache } = createUrqlClientAndCache();
+  await client.query(RecentSnippetsDocument, { amount: 6 }).toPromise();
+
+  return {
+    props: { urqlState: ssrCache.extractData() },
+    revalidate: 600,
+  };
+};
+
+export default withUrqlClient(
+  (_ssr) => ({
+    url: process.env.API_ENDPOINT ?? "/api",
+  }),
+  { ssr: false, staleWhileRevalidate: true }
+)(Home);
