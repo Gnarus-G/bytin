@@ -71,7 +71,7 @@ const Jumbotron = styled("header")({
 
 export const getStaticProps: GetStaticProps = async () => {
   const { client, ssrCache } = getUrqlClientAndCache();
-  await client.query(RecentSnippetsDocument, { amount: 6 }).toPromise();
+  await client.query(RecentSnippetsDocument, { amount: maxAmountOfFeaturedSnippets }).toPromise();
 
   return {
     props: { urqlState: ssrCache.extractData() },
