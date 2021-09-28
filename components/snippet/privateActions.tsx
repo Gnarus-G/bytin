@@ -1,6 +1,8 @@
 import { Delete, Edit, Save } from "@mui/icons-material";
 import {
   Button,
+  Card,
+  CardActions,
   Dialog,
   DialogActions,
   DialogContent,
@@ -28,15 +30,18 @@ export default function PrivateActions({
 
   return (
     <>
-      <Grid container justifyContent="space-between">
-        <IconButton color="error" edge="start" onClick={deleteDialogState.open}>
-          <Delete />
-        </IconButton>
-        <IconButton color="info" edge="end" onClick={editFormDialogState.open}>
-          <Edit />
-        </IconButton>
-      </Grid>
-
+      <Card elevation={4} sx={{ my: 2 }}>
+        <CardActions>
+          <Grid container justifyContent="space-between">
+            <IconButton color="error" onClick={deleteDialogState.open}>
+              <Delete />
+            </IconButton>
+            <IconButton color="info" onClick={editFormDialogState.open}>
+              <Edit />
+            </IconButton>
+          </Grid>
+        </CardActions>
+      </Card>
       <Dialog
         open={editFormDialogState.isOpen}
         onClose={editFormDialogState.close}
