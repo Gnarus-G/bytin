@@ -1,7 +1,27 @@
 import styled from "@emotion/styled";
-import { Box, Container, Divider, Typography } from "@mui/material";
+import {
+  Box,
+  Container,
+  Divider, Typography
+} from "@mui/material";
+import SnippetGrid from "components/snippet/grid";
+import {
+  useRecentSnippetsQuery
+} from "generated/graphql";
+import useBreakpoints from "lib/hooks/useBreakpoints";
 
 export default function Home() {
+  const maxAmount = 8;
+  const [{ data }] = useRecentSnippetsQuery({
+    variables: { amount: maxAmount },
+  });
+  const sizeToShow = useBreakpoints({ xs: 4, md: 4, lg: 6, xl: maxAmount }, 6);
+  console.log(`sizeToShow`, sizeToShow);
+
+  const snippets = data?.snippets?.slice(0, sizeToShow);
+
+  console.log(`snippets.length`, snippets?.length);
+
   return (
     <>
       <Jumbotron>
@@ -33,6 +53,7 @@ export default function Home() {
           </Typography>
           <Divider />
         </Box>
+        <SnippetGrid snippets={snippets} />
       </Container>
     </>
   );

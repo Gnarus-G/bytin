@@ -2384,6 +2384,13 @@ export type OwnSnippetsQueryVariables = Exact<{
 
 export type OwnSnippetsQuery = { __typename?: 'Query', snippets: Array<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, private: boolean, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
 
+export type RecentSnippetsQueryVariables = Exact<{
+  amount: Scalars['Int'];
+}>;
+
+
+export type RecentSnippetsQuery = { __typename?: 'Query', snippets: Array<{ __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, private: boolean, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> }> };
+
 export type SnippetFragment = { __typename?: 'Snippet', id: number, title: string, description: string, code: string, language: string, framework?: Maybe<string>, resource?: Maybe<string>, private: boolean, owner?: Maybe<{ __typename?: 'User', name?: Maybe<string> }> };
 
 export const SnippetFragmentDoc = gql`
@@ -2455,4 +2462,15 @@ export const OwnSnippetsDocument = gql`
 
 export function useOwnSnippetsQuery(options: Omit<Urql.UseQueryArgs<OwnSnippetsQueryVariables>, 'query'> = {}) {
   return Urql.useQuery<OwnSnippetsQuery>({ query: OwnSnippetsDocument, ...options });
+};
+export const RecentSnippetsDocument = gql`
+    query RecentSnippets($amount: Int!) {
+  snippets(take: $amount, orderBy: {createdAt: desc}) {
+    ...Snippet
+  }
+}
+    ${SnippetFragmentDoc}`;
+
+export function useRecentSnippetsQuery(options: Omit<Urql.UseQueryArgs<RecentSnippetsQueryVariables>, 'query'> = {}) {
+  return Urql.useQuery<RecentSnippetsQuery>({ query: RecentSnippetsDocument, ...options });
 };
