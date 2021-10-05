@@ -1,7 +1,8 @@
 /** @type {import("next").NextConfig} */
 module.exports = {
     webpack: (config, { isServer }) => {
-        if(isServer) config.externals.push("_http_common");
+        if(isServer) config.externals.push("mongodb");
+        // if(isServer) config.externals.push("_http_common");
         return config;
     }
 }
