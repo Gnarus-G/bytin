@@ -34,7 +34,7 @@
     "docker:db": "docker-compose -f docker-compose.debug.yml up -d",
     "build": "next build",
     "type-check": "tsc --noEmit",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "test": "jest",
     "test:watch": "jest --watch",
     "gen": "graphql-codegen --config codegen.yml"
