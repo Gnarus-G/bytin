@@ -1,0 +1,12 @@
+export { AggregateSnippetArgs } from "./AggregateSnippetArgs";
+export { CreateManySnippetArgs } from "./CreateManySnippetArgs";
+export { CreateSnippetArgs } from "./CreateSnippetArgs";
+export { DeleteManySnippetArgs } from "./DeleteManySnippetArgs";
+export { DeleteSnippetArgs } from "./DeleteSnippetArgs";
+export { FindFirstSnippetArgs } from "./FindFirstSnippetArgs";
+export { FindManySnippetArgs } from "./FindManySnippetArgs";
+export { FindUniqueSnippetArgs } from "./FindUniqueSnippetArgs";
+export { GroupBySnippetArgs } from "./GroupBySnippetArgs";
+export { UpdateManySnippetArgs } from "./UpdateManySnippetArgs";
+export { UpdateSnippetArgs } from "./UpdateSnippetArgs";
+export { UpsertSnippetArgs } from "./UpsertSnippetArgs";

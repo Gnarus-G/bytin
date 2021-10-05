@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { resolvers } from "@generated/type-graphql";
+import { resolvers } from "generated/type-graphql";
 import { buildSchemaSync } from "type-graphql";
 import prisma from "../../prisma";
 import microCors from "micro-cors";

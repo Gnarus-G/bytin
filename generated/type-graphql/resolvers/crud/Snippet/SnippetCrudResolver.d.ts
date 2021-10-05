@@ -1,0 +1,31 @@
+import { GraphQLResolveInfo } from "graphql";
+import { AggregateSnippetArgs } from "./args/AggregateSnippetArgs";
+import { CreateManySnippetArgs } from "./args/CreateManySnippetArgs";
+import { CreateSnippetArgs } from "./args/CreateSnippetArgs";
+import { DeleteManySnippetArgs } from "./args/DeleteManySnippetArgs";
+import { DeleteSnippetArgs } from "./args/DeleteSnippetArgs";
+import { FindFirstSnippetArgs } from "./args/FindFirstSnippetArgs";
+import { FindManySnippetArgs } from "./args/FindManySnippetArgs";
+import { FindUniqueSnippetArgs } from "./args/FindUniqueSnippetArgs";
+import { GroupBySnippetArgs } from "./args/GroupBySnippetArgs";
+import { UpdateManySnippetArgs } from "./args/UpdateManySnippetArgs";
+import { UpdateSnippetArgs } from "./args/UpdateSnippetArgs";
+import { UpsertSnippetArgs } from "./args/UpsertSnippetArgs";
+import { Snippet } from "../../../models/Snippet";
+import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
+import { AggregateSnippet } from "../../outputs/AggregateSnippet";
+import { SnippetGroupBy } from "../../outputs/SnippetGroupBy";
+export declare class SnippetCrudResolver {
+    snippet(ctx: any, info: GraphQLResolveInfo, args: FindUniqueSnippetArgs): Promise<Snippet | null>;
+    findFirstSnippet(ctx: any, info: GraphQLResolveInfo, args: FindFirstSnippetArgs): Promise<Snippet | null>;
+    snippets(ctx: any, info: GraphQLResolveInfo, args: FindManySnippetArgs): Promise<Snippet[]>;
+    createSnippet(ctx: any, info: GraphQLResolveInfo, args: CreateSnippetArgs): Promise<Snippet>;
+    createManySnippet(ctx: any, info: GraphQLResolveInfo, args: CreateManySnippetArgs): Promise<AffectedRowsOutput>;
+    deleteSnippet(ctx: any, info: GraphQLResolveInfo, args: DeleteSnippetArgs): Promise<Snippet | null>;
+    updateSnippet(ctx: any, info: GraphQLResolveInfo, args: UpdateSnippetArgs): Promise<Snippet | null>;
+    deleteManySnippet(ctx: any, info: GraphQLResolveInfo, args: DeleteManySnippetArgs): Promise<AffectedRowsOutput>;
+    updateManySnippet(ctx: any, info: GraphQLResolveInfo, args: UpdateManySnippetArgs): Promise<AffectedRowsOutput>;
+    upsertSnippet(ctx: any, info: GraphQLResolveInfo, args: UpsertSnippetArgs): Promise<Snippet>;
+    aggregateSnippet(ctx: any, info: GraphQLResolveInfo, args: AggregateSnippetArgs): Promise<AggregateSnippet>;
+    groupBySnippet(ctx: any, info: GraphQLResolveInfo, args: GroupBySnippetArgs): Promise<SnippetGroupBy[]>;
+}

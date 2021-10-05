@@ -8,7 +8,9 @@ generator client {
 }
 
 generator typegraphql {
-  provider = "typegraphql-prisma"
+  provider           = "typegraphql-prisma"
+  output             = "../generated/type-graphql"
+  emitTranspiledCode = true
 }
 
 model Account {
@@ -77,6 +79,6 @@ model Snippet {
   private     Boolean  @default(false)
   createdAt   DateTime @default(now()) @map(name: "created_at")
   updatedAt   DateTime @default(now()) @map(name: "updated_at")
-  owner        User?    @relation(fields: [ownerId], references: [id])
-  ownerId      Int?
+  owner       User?    @relation(fields: [ownerId], references: [id])
+  ownerId     Int?
 }
