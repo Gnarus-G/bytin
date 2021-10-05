@@ -2,17 +2,13 @@ import styled from "@emotion/styled";
 import { Box, Container, Divider, Typography } from "@mui/material";
 import SnippetGrid from "components/snippet/grid";
 import {
-  RecentSnippetsDocument,
-  useRecentSnippetsQuery,
+  useRecentSnippetsQuery
 } from "generated/graphql";
 import useBreakpoints from "lib/hooks/useBreakpoints";
-import { getUrqlClientAndCache } from "lib/utils/getUrqlClientAndCache";
-import { GetStaticProps } from "next";
-import { withUrqlClient } from "next-urql";
 
 const maxAmountOfFeaturedSnippets = 8;
 
-function Home() {
+export default function Home() {
   const [{ data }] = useRecentSnippetsQuery({
     variables: { amount: maxAmountOfFeaturedSnippets },
   });
@@ -68,20 +64,3 @@ const Jumbotron = styled("header")({
   background: `linear-gradient( rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3) ), url("/img/landing-img.jpg") no-repeat center center fixed`,
   backgroundSize: "cover",
 });
-
-export const getStaticProps: GetStaticProps = async () => {
-  const { client, ssrCache } = getUrqlClientAndCache();
-  await client.query(RecentSnippetsDocument, { amount: maxAmountOfFeaturedSnippets }).toPromise();
-
-  return {
-    props: { urqlState: ssrCache.extractData() },
-    revalidate: 600,
-  };
-};
-
-export default withUrqlClient(
-  (_ssr) => ({
-    url: process.env.API_ENDPOINT ?? "/api",
-  }),
-  { ssr: false, staleWhileRevalidate: true }
-)(Home);
