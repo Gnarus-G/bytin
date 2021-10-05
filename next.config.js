@@ -1,8 +1,4 @@
 /** @type {import("next").NextConfig} */
 module.exports = {
-    target: "experimental-serverless-trace",
-    // webpack: (config, { isServer }) => {
-    //     if(isServer) config.externals.push("_http_common");
-    //     return config;
-    // }
-}
+  target: "experimental-serverless-trace",
+};
