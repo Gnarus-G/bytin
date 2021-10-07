@@ -1,13 +1,9 @@
 import styled from "@emotion/styled";
 import {
-  Avatar,
   Box,
   Container,
-  Divider,
-  Skeleton,
-  Typography,
+  Divider, Typography
 } from "@mui/material";
-import SnippetCard from "components/snippet/card";
 import SnippetGrid, { SnippetGridSkeleton } from "components/snippet/grid";
 import { useRecentSnippetsQuery } from "generated/graphql";
 import useBreakpoints from "lib/hooks/useBreakpoints";

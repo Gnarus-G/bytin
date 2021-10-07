@@ -1,6 +1,5 @@
 import { Check, Save } from "@mui/icons-material";
 import { Button, Container, Typography } from "@mui/material";
-import { IsNotEmpty } from "class-validator";
 import { AuthGuard } from "components/auth-guard";
 import SnippetForm from "components/snippet/form";
 import useSnippetInput from "components/snippet/useSnippetInput";

@@ -3,8 +3,7 @@ import {
   CardActions,
   CardContent,
   Grid,
-  Skeleton,
-  Typography,
+  Skeleton
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { SnippetFragment } from "generated/graphql";
