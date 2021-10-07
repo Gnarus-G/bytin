@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { PropsWithChildren, useEffect, useLayoutEffect } from "react";
+import { PropsWithChildren, useLayoutEffect } from "react";
 
 interface WithFallBackProps {
   when: boolean;

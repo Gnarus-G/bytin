@@ -1,13 +1,17 @@
 import styled from "@emotion/styled";
-import { Box, Container, Divider, Typography } from "@mui/material";
-import SnippetGrid from "components/snippet/grid";
+import {
+  Box,
+  Container,
+  Divider, Typography
+} from "@mui/material";
+import SnippetGrid, { SnippetGridSkeleton } from "components/snippet/grid";
 import { useRecentSnippetsQuery } from "generated/graphql";
 import useBreakpoints from "lib/hooks/useBreakpoints";
 
 const maxAmountOfFeaturedSnippets = 8;
 
 export default function Home() {
-  const [{ data }] = useRecentSnippetsQuery({
+  const [{ data, fetching }] = useRecentSnippetsQuery({
     variables: { amount: maxAmountOfFeaturedSnippets },
   });
   const sizeToShow = useBreakpoints(
@@ -47,6 +51,7 @@ export default function Home() {
           </Typography>
           <Divider />
         </Box>
+        {fetching && <SnippetGridSkeleton size={sizeToShow} />}
         <SnippetGrid snippets={snippets} />
       </Container>
     </>
