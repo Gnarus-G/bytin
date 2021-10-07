@@ -2483,7 +2483,11 @@ export function useOwnSnippetsQuery(options: Omit<Urql.UseQueryArgs<OwnSnippetsQ
 };
 export const RecentSnippetsDocument = gql`
     query RecentSnippets($amount: Int!) {
-  snippets(take: $amount, orderBy: {createdAt: desc}) {
+  snippets(
+    take: $amount
+    orderBy: {createdAt: desc}
+    where: {private: {not: {equals: true}}}
+  ) {
     ...Snippet
   }
 }

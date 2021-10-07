@@ -17,7 +17,7 @@ query OwnSnippets($where: SnippetWhereInput!) {
 }
 
 query RecentSnippets($amount: Int!) {
-  snippets(take: $amount, orderBy: { createdAt: desc }) {
+  snippets(take: $amount, orderBy: { createdAt: desc }, where: { private: { not: { equals: true } } }) {
     ...Snippet
   }
 }
