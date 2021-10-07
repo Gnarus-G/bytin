@@ -11,8 +11,8 @@ export default function Home() {
     variables: { amount: maxAmountOfFeaturedSnippets },
   });
   const sizeToShow = useBreakpoints(
-    { xs: 4, md: 4, lg: 6, xl: maxAmountOfFeaturedSnippets },
-    6
+    { sm: 4, lg: 6 },
+    maxAmountOfFeaturedSnippets
   );
   const snippets = data?.snippets?.slice(0, sizeToShow);
 
