@@ -1,4 +1,10 @@
 # netlify.toml
+[build]
+publish = ".next"
+
+[[plugins]]
+package = "@netlify/plugin-nextjs-experimental"
+
 [functions]
 # Specifies `esbuild` for functions bundling
 node_bundler = "esbuild"

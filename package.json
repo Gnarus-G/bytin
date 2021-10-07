@@ -44,6 +44,7 @@
     "@graphql-codegen/typescript-operations": "^2.1.4",
     "@graphql-codegen/typescript-urql": "^3.2.0",
     "@graphql-codegen/urql-introspection": "^2.1.0",
+    "@netlify/plugin-nextjs-experimental": "^0.0.5",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@types/jest": "^26.0.19",
