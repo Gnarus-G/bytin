@@ -4,14 +4,3 @@ publish = ".next"
 
 [[plugins]]
 package = "@netlify/plugin-nextjs-experimental"
-
-[functions]
-# Specifies `esbuild` for functions bundling
-node_bundler = "esbuild"
-external_node_modules = [
-    "next",
-    "type-graphql",
-    "require_optional",
-    "typeorm",
-    "app-root-path",
-]
